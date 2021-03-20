@@ -8,7 +8,6 @@ class MorphListWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() =>_MorphListWidgetState();
 
-  _MorphListWidgetState? state;
 
   void Function(String a)? search;
 
@@ -20,10 +19,10 @@ class MorphListWidget extends StatefulWidget {
 // Stateを継承して使う
 class _MorphListWidgetState extends State<MorphListWidget> {
 
+
   // データを元にWidgetを作る
   @override
   Widget build(BuildContext context) {
-    print(allButtons);
     return ListView.builder(
       itemCount: showButtons.length,
       itemBuilder: (context, index) {
@@ -69,7 +68,6 @@ class _MorphListWidgetState extends State<MorphListWidget> {
   @override
   void initState() {
     widget.search=Search;
-
     CreateButtons();
     setState(() {
       showButtons=[...allButtons];

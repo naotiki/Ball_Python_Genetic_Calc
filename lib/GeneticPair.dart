@@ -59,6 +59,7 @@ class GeneticPair {
       case Order.Dominance:
         break;
       case Order.CoDominance:
+
         if (pair[1].ID == pair[0].ID) {
           info = Info.Super;
         }
@@ -73,7 +74,7 @@ class GeneticPair {
   }
 
   static GeneticPair ToGeneticPairFromID(List<int> ids) {
-    return new GeneticPair(Genetic.fromID(ids[0]), Genetic.fromID(ids[1]));
+    return GeneticPair(Genetic.fromID(ids[0]), Genetic.fromID(ids[1]));
   }
 
   @override

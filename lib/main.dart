@@ -1,8 +1,12 @@
+
+
 import 'package:ball_python_calc/GeneticPair.dart';
 import 'package:ball_python_calc/Morph.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fraction/fraction.dart';
+import 'package:tuple/tuple.dart';
 
 import 'Genetic.dart';
 import 'MorphListWidget.dart';
@@ -13,7 +17,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,6 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'ボールパイソンモルフ計算 (BallPython Morph Calculator)'),
     );
   }
-
 }
 
 class MyHomePage extends StatefulWidget {
@@ -62,15 +64,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var MaleList=MorphListWidget(AddMale);
-    var FemaleList=MorphListWidget(AddFemale);
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body:Column(
+      body: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -131,6 +131,66 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center,
+              // Center is a layout widget. It takes a single child and positions it
+              // in the middle of the parent.
+
+              children: [
+                Expanded(
+                  child: Container(
+                    width: 300,
+                    height: 50,
+                    margin: EdgeInsets.all(10),
+                    child: Wrap(
+                      alignment: WrapAlignment.start,
+                      spacing: 8.0,
+                      runSpacing: 0.0,
+                      direction: Axis.horizontal,
+                      children: GetChip(Males),
+                    ),
+                  ),
+                ),
+                /*  Expanded(
+                  child: Container(
+                      width: 300,
+                      height: 150,
+                      margin: EdgeInsets.all(10),
+                      child: ListView.builder(
+                        itemCount: Males.length,
+                        itemBuilder: (context, index) {
+                          return Chip(
+                            label: Text(Males[index].toString()),
+                            onDeleted: () {
+                              setState(() {
+                                Males.removeAt(index);
+                              });
+                            },
+                          );
+                        },
+                      )),
+                ),*/
+                Expanded(
+                  child: Container(
+                    width: 300,
+                    height: 50,
+                    margin: EdgeInsets.all(10),
+                    child: Wrap(
+                      alignment: WrapAlignment.start,
+                      spacing: 8.0,
+                      runSpacing: 0.0,
+                      direction: Axis.horizontal,
+                      children: GetChip(Females),
+                    ),
+                  ),
+                ),
+                /*Expanded(
+                  child: Container(
+                    width: 300,
+                    margin: EdgeInsets.all(10),
+                    child:
+                  ),
+                ),*/
+              ]),
           Container(
               margin: EdgeInsets.only(top: 10),
               width: 150,
@@ -141,7 +201,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (!listEquals(Males, <GeneticPair>[])) {
                       Males.forEach((element) {
                         maleStr += element.toString() + ",";
-
                       });
                       maleStr = maleStr.substring(0, maleStr.length - 1);
                     } else {
@@ -151,18 +210,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (!listEquals(Females, <GeneticPair>[])) {
                       Females.forEach((element) {
                         femaleStr += element.toString() + ",";
-
-
                       });
                       femaleStr = femaleStr.substring(0, femaleStr.length - 1);
                     } else {
                       femaleStr += "ノーマル";
                     }
                     setState(() {
-                      MixStr = maleStr + " X " + femaleStr;
+                      MixStr = maleStr + " × " + femaleStr;
                     });
 
-                    Morph.Calc(Males, Females);
+                    setState(() {
+                      CalcResult = Morph.Calc(Males, Females);
+                    });
                   },
                   child: Text(
                     "計算",
@@ -170,9 +229,32 @@ class _MyHomePageState extends State<MyHomePage> {
                       fontSize: 30.0,
                     ),
                   ))),
-          Text(MixStr)
+          Text(MixStr,style: TextStyle(fontSize: 20),),
+          if (CalcResult != null)  Expanded(child: Container( margin: EdgeInsets.all( 10),
+
+             child:  GetResult()))
+          //
         ],
       ),
+    );
+  }
+
+  List<Tuple2<String, double>>? CalcResult;
+
+  ListView GetResult() {
+    return ListView.builder(
+      itemCount: CalcResult!.length,
+      itemBuilder: (context, index) {
+        var e = CalcResult![index];
+        return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Expanded(child: Container(width: 100,  child: Text(e.item1))),
+          Expanded(child: Container(width: 100,child: Text((e.item2 * 100).toString()))),
+          Expanded(
+            child: Container(width: 100,
+                child: Text(Fraction.fromDouble(e.item2).reduce().toString())),
+          ),
+        ]);
+      },
     );
   }
 
@@ -184,8 +266,21 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         Males.add(a);
       });
-
     }
+  }
+
+  List<Chip> GetChip(List list) {
+    List<Chip> result = [];
+    for (int i = 0; i < list.length; i++) {
+      result.add(Chip(
+          label: Text(list[i].toString()),
+          onDeleted: () {
+            setState(() {
+              list.removeAt(i);
+            });
+          }));
+    }
+    return result;
   }
 
   void AddFemale(GeneticPair a) {
@@ -194,7 +289,15 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         Females.add(a);
       });
-
     }
+  }
+
+  late MorphListWidget MaleList;
+  late MorphListWidget FemaleList;
+
+  @override
+  void initState() {
+    MaleList = MorphListWidget(AddMale);
+    FemaleList = MorphListWidget(AddFemale);
   }
 }

@@ -43,7 +43,7 @@ extension GeneticsList on List<GeneticPair> {
   int indexOfGeneticPairs(GeneticPair b) {
     for (var i = 0; i < this.length; i++) {
 
-      if (this[i].pair[0].ID == b.pair[0].ID&&this[i].info!=b.info) return i;
+      if (this[i].pair[0].ID == b.pair[0].ID&&this[i].hashCode!=b.hashCode) return i;
     }
 
     return -1;

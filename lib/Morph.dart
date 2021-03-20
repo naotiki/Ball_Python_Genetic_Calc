@@ -48,13 +48,25 @@ class Morph {
     male.pairs.forEach((element) {
       if (denyHashList.contains(element.hashCode)) {
       } else {
-        var index = male.pairs.indexOfGeneticPairs(element);
-        if (index != -1) {
-          pair.add([element.ToIntList(), male.pairs[index].ToIntList()]);
-          denyHashList.add(male.pairs[index].hashCode);
+
+        var fi=female.pairs.indexOfGeneticPairs(element);
+        if (fi!=-1) {
+          pair.add([element.ToIntList(), female.pairs[fi].ToIntList()]);
+          denyHashList.add(female.pairs[fi].hashCode);
+
         }else{
-          pair.add([element.ToIntList(), [0,0]]);
+          var index = male.pairs.indexOfGeneticPairs(element);
+          if (index != -1) {
+            pair.add([element.ToIntList(), male.pairs[index].ToIntList()]);
+            denyHashList.add(male.pairs[index].hashCode);
+          }else{
+            pair.add([element.ToIntList(), [0,0]]);
+          }
         }
+
+
+
+
       }
     });
 
@@ -95,8 +107,13 @@ class Morph {
         [0, 0]
       ]);*/
     });
+    if(pair.length!=1){
+      pair= pair.where((element) =>!listEquals(element[0], [0,0])).toList();
 
-    int all = pow(pair.length, 4).toInt();
+
+    }
+
+    int all = pow( 4,pair.length,).toInt();
     List<Snake> children = [];
     for (int i2 = 0; i2 < all; i2++) {
       children.add(new Snake());
@@ -114,7 +131,7 @@ class Morph {
 
       var groupIndex = 0;
       for (int index = 0; index < all;) {
-        for (int i2 = 0; i2 < all / pow(4, i1 + 1).toInt(); i2++) {
+        for (int i2 = 0; i2 < (all / pow(4, i1 + 1).toInt()); i2++) {
           //何回繰り返す?
           children[index].AddfromID(groups[groupIndex]);
           index++;
