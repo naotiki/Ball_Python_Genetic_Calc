@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'Genetic.dart';
 
 class GeneticPair {
@@ -6,8 +8,19 @@ class GeneticPair {
   Info info = Info.None;
 
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GeneticPair &&
+          runtimeType == other.runtimeType &&
+          listEquals(pair, other.pair)&&info==other.info;
+
+  @override
+  int get hashCode => pair.hashCode;
+
   GeneticPair.auto(Genetic a, {Info info = Info.None}) {
     pair=[a,Genetic.normal];
+    this.info=info;
     switch (a.order) {
       case Order.Recessive:
         if(info!=Info.Het){
@@ -65,7 +78,23 @@ class GeneticPair {
 
   @override
   String toString() {
-    return 'GeneticPair{pair: $pair, info: $info}';
+    var str="";
+      switch (info) {
+
+        case Info.None:
+          str+=pair[0].toString();
+          break;
+        case Info.Het:
+          str+="ヘテロ "+pair[0].toString();
+          break;
+        case Info.Super:
+          str+="スーパー "+pair[0].toString();
+          break;
+      }
+    if (str=="") {
+      str="ノーマル";
+    }
+    return str;
   }
 }
 

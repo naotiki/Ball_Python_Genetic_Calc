@@ -1,13 +1,17 @@
-
-
-
-
 import 'GeneticPair.dart';
 import 'Morph.dart';
 
 void main() {
   Genetic.initialize();
-  Morph.CalcDebug(GeneticPair.auto(Genetic.fromName("アルビノ(Ｔ-アルビノ)")), GeneticPair.normal());
+  Morph.Calc([
+    GeneticPair.auto(Genetic.fromName("ARP"))
+
+  ],[
+    GeneticPair.auto(Genetic.fromName("Exo-LBB")),
+
+    GeneticPair.auto(Genetic.fromName("Exo-LBB"),info: Info.Super),
+
+  ], );
 }
 
 class Genetic {
@@ -34,6 +38,7 @@ class Genetic {
       id++;
     });
   }
+
 static final normal=new Genetic("ノーマル", 0, Order.Normal);
   static List<Genetic> genetics = [normal];
 
@@ -46,6 +51,7 @@ static final normal=new Genetic("ノーマル", 0, Order.Normal);
   }
 
   static List<String> dominance = [
+    "ピンストライプ",
     "アシッド",
     "アプリコット",
     "アラザ",
@@ -149,6 +155,7 @@ static final normal=new Genetic("ノーマル", 0, Order.Normal);
     "ウーキー"
   ];
   static List<String> coDominances = [
+    "パステル",
     "アロイ",
     "アルファ",
     "アークティック",
