@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:tuple/tuple.dart';
+
 import 'Extension.dart';
 import 'GeneticPair.dart';
 import 'Snake.dart';
@@ -51,7 +53,7 @@ class Morph {
       ]);
     });
 
-    int all = pair.length * 4; //pow(pair.length, 4).toInt();
+    int all = pair.length*4;// pow(pair.length, 4).toInt();
     List<Snake> children = [];
     for (int i2 = 0; i2 < all; i2++) {
       children.add(new Snake());
@@ -67,7 +69,6 @@ class Morph {
         [group[0][1], group[1][1]],
       ];
 
-      var i = 0;
       var groupIndex = 0;
       for (int index = 0; index < all;) {
         for (int i2 = 0; i2 < all / pow(4, i1 + 1).toInt(); i2++) {
@@ -79,14 +80,22 @@ class Morph {
         if (groupIndex >= 4) groupIndex = 0;
       }
     }
+
+    List<Tuple2<String,double>> result =[];
      var morphs=new Set();
     var morphAll=[];
     children.forEach((element) {
       morphs.add(element.toString());
       morphAll.add(element.toString());
-      print(element);
-      print("\n");
+      //print(element);
     });
+    morphs.forEach((element) {
+      result.add(new Tuple2(element, 1/morphs.length));
+
+
+    });
+
+    print(result.toString());
 
   }
 }

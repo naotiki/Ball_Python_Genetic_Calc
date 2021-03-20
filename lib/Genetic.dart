@@ -1,13 +1,13 @@
 
 
+
+
 import 'GeneticPair.dart';
 import 'Morph.dart';
 
 void main() {
   Genetic.initialize();
-  print(Genetic.fromName("アシッド"));
-  Morph.Calc([new GeneticPair.auto(Genetic.fromName("アシッド")),new GeneticPair.auto(Genetic.fromName("アロイ"),info: Info.Super)],
-      [new GeneticPair.auto(Genetic.fromName("アロイ")),new GeneticPair.auto(Genetic.fromName("アルファ"))]);
+  Morph.CalcDebug(GeneticPair.auto(Genetic.fromName("アルビノ(Ｔ-アルビノ)")), GeneticPair.normal());
 }
 
 class Genetic {
