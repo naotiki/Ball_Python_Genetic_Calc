@@ -1,0 +1,8 @@
+C:/Projects/Flutter/ball_python_calc/build/windows/runner/Debug/data/icudtl.dat
+C:/Projects/Flutter/ball_python_calc/build/windows/runner/Debug/flutter_windows.dll
+C:/Projects/Flutter/ball_python_calc/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
+C:/Projects/Flutter/ball_python_calc/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
+C:/Projects/Flutter/ball_python_calc/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+C:/Projects/Flutter/ball_python_calc/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
+C:/Projects/Flutter/ball_python_calc/build/windows/runner/Debug/data/flutter_assets/NOTICES
+C:/Projects/Flutter/ball_python_calc/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf

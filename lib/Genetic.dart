@@ -4,12 +4,11 @@ import 'Morph.dart';
 void main() {
   Genetic.initialize();
   Morph.Calc([
-    GeneticPair.auto(Genetic.fromName("ARP"))
-
-  ],[
     GeneticPair.auto(Genetic.fromName("Exo-LBB")),
 
-    GeneticPair.auto(Genetic.fromName("Exo-LBB"),info: Info.Super),
+  ],[
+
+    GeneticPair.auto(Genetic.fromName("Exo-LBB")),
 
   ], );
 }

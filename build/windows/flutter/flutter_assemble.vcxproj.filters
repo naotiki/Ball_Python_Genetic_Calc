@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Projects\Flutter\ball_python_calc\build\windows\CMakeFiles\6a41164f26200c14e75eee9a5c934d15\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Projects\Flutter\ball_python_calc\build\windows\CMakeFiles\f499baffc228ff3cf39a1409cf7f0e6d\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Projects\Flutter\ball_python_calc\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Projects\Flutter\ball_python_calc\build\windows\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{FFEE8AB0-1804-30B1-A2BC-DECD776E304B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

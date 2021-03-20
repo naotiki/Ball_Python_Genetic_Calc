@@ -1,0 +1,10 @@
+^C:\PROJECTS\FLUTTER\BALL_PYTHON_CALC\BUILD\WINDOWS\CMAKEFILES\AC4720D6BD1052A9FD0B567867503F15\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Projects/Flutter/ball_python_calc/windows -BC:/Projects/Flutter/ball_python_calc/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Projects/Flutter/ball_python_calc/build/windows/ball_python_calc.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
