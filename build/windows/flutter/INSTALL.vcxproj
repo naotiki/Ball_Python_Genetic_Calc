@@ -176,7 +176,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Projects\Flutter\ball_python_calc\build\windows\runner\ALL_BUILD.vcxproj">
+    <ProjectReference Include="C:\Projects\Flutter\ball_python_calc\build\windows\plugins\url_launcher_windows\ALL_BUILD.vcxproj">
       <Project>{84B9E852-FB32-3F82-8035-FEF569E9B5A9}</Project>
       <Name>ALL_BUILD</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

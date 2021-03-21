@@ -149,6 +149,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{59D7761D-8D1E-3D63-93EE-9A596A3D3788}</Project>
       <Name>flutter_wrapper_plugin</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\Projects\Flutter\ball_python_calc\build\windows\plugins\url_launcher_windows\url_launcher_windows_plugin.vcxproj">
+      <Project>{7DF741EE-7315-342D-A319-D71C2D52BEF5}</Project>
+      <Name>url_launcher_windows_plugin</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

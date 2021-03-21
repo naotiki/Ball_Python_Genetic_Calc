@@ -1,7 +1,7 @@
 
 
-import 'package:ball_python_calc/GeneticPair.dart';
-import 'package:ball_python_calc/Morph.dart';
+import 'GeneticPair.dart';
+import 'Morph.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -243,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
   void _launchURL(String url) async =>
-      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+      await canLaunch(url) ? await launch(url,enableJavaScript: true) : throw 'Could not launch $url';
   List<Tuple2<String, double>>? CalcResult;
 
   ListView GetResult() {

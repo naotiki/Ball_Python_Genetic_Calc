@@ -1,5 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ball_python_calc">
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:scheme="https"/>
+        </intent>
+    </queries>
    <application
         android:label="ball_python_calc"
         android:icon="@mipmap/ic_launcher">
@@ -37,5 +44,11 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
     </application>
+    <!-- Nest within the manifest element, not the application element-->
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Nest within the manifest element, not the application element-->
+
 </manifest>

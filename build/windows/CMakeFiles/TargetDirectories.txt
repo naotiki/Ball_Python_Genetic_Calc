@@ -8,3 +8,6 @@ C:/Projects/Flutter/ball_python_calc/build/windows/flutter/CMakeFiles/INSTALL.di
 C:/Projects/Flutter/ball_python_calc/build/windows/runner/CMakeFiles/ball_python_calc.dir
 C:/Projects/Flutter/ball_python_calc/build/windows/runner/CMakeFiles/INSTALL.dir
 C:/Projects/Flutter/ball_python_calc/build/windows/runner/CMakeFiles/ALL_BUILD.dir
+C:/Projects/Flutter/ball_python_calc/build/windows/plugins/url_launcher_windows/CMakeFiles/url_launcher_windows_plugin.dir
+C:/Projects/Flutter/ball_python_calc/build/windows/plugins/url_launcher_windows/CMakeFiles/INSTALL.dir
+C:/Projects/Flutter/ball_python_calc/build/windows/plugins/url_launcher_windows/CMakeFiles/ALL_BUILD.dir
