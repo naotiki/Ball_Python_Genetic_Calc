@@ -40,12 +40,19 @@ extension ContainList on List<List<int>> {
 }*/
 
 extension GeneticsList on List<GeneticPair> {
-  int indexOfGeneticPairs(GeneticPair b) {
+  int indexOfGeneticPairs(GeneticPair b,Set<int> deny) {
+    var r=-1;
     for (var i = 0; i < this.length; i++) {
 
-      if (this[i].pair[0].ID == b.pair[0].ID&&this[i].hashCode!=b.hashCode) return i;
+      if (this[i].pair[0].ID == b.pair[0].ID&&this[i].hashCode!=b.hashCode&&!deny.contains(this[i])) {
+        r=i;
+        if(this[i].pair[1].ID == b.pair[1].ID){
+          return r;
+        }
+
+      }
     }
 
-    return -1;
+    return r;
   }
 }

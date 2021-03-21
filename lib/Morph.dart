@@ -1,32 +1,29 @@
 import 'dart:isolate';
 import 'dart:math';
 
-import 'Genetic.dart';
 import 'package:flutter/foundation.dart';
 import 'package:tuple/tuple.dart';
 
 import 'Extension.dart';
+import 'Genetic.dart';
 import 'GeneticPair.dart';
 import 'Snake.dart';
 
 /// # モルフを定義するクラス
 class Morph {
-
-
-   static  Future<List<Tuple2<String, double>>>  Calc(
-       Tuple3<SendPort?,List<GeneticPair>,List<GeneticPair>> snakes
-     /* List<GeneticPair> Male, List<GeneticPair> Female*/) async{
-     Genetic.initialize();
-     var Male=snakes.item2;
-     var Female=snakes.item3;
+  static Future<List<Tuple2<String, double>>> Calc(
+      Tuple3<SendPort?, List<GeneticPair>, List<GeneticPair>> snakes
+      /* List<GeneticPair> Male, List<GeneticPair> Female*/) async {
+    Genetic.initialize();
+    var Male = snakes.item2;
+    var Female = snakes.item3;
     if (listEquals(Male, [])) {
       Male = [GeneticPair.normal()];
     }
     if (listEquals(Female, [])) {
       Female = [GeneticPair.normal()];
     }
-    print(Male);
-    print(Female);
+
     var male = Snake();
     var female = Snake();
     Male.forEach((element) {
@@ -48,76 +45,56 @@ class Morph {
 
     print(male.GeneticsPairs);
     print(female.GeneticsPairs);
-    List<int> denyHashList = [];
+    Set<int> denyHashList = new Set<int>();
     male.pairs.forEach((element) {
       if (denyHashList.contains(element.hashCode)) {
+        return;
       } else {
-
-        var fi=female.pairs.indexOfGeneticPairs(element);
-        if (fi!=-1) {
+        denyHashList.add(element.hashCode);
+        var fi = female.pairs.indexOfGeneticPairs(element, denyHashList);
+        if (fi != -1) {
           pair.add([element.ToIntList(), female.pairs[fi].ToIntList()]);
           denyHashList.add(female.pairs[fi].hashCode);
-
-        }else{
-          var index = male.pairs.indexOfGeneticPairs(element);
+        } else {
+          var index = male.pairs.indexOfGeneticPairs(element, denyHashList);
           if (index != -1) {
             pair.add([element.ToIntList(), male.pairs[index].ToIntList()]);
             denyHashList.add(male.pairs[index].hashCode);
-          }else{
-            pair.add([element.ToIntList(), [0,0]]);
+          } else {
+            pair.add([
+              element.ToIntList(),
+              [0, 0]
+            ]);
           }
         }
-
-
-
-
       }
     });
 
-    /*male.GeneticsPairs.forEach((element) {
-      //スーパーでも一緒になるようにする
-      male.GeneticsPairs.where(
-          (element1) => element1 != element && listEquals(element1, element));
-      if (male.GeneticsPairs.containsSecondElement(element, element)) {
-        var i = male.GeneticsPairs.indexOfSecondElement(element, element);
-        pair.add([element, male.GeneticsPairs[i]]);
-        male.GeneticsPairs.removeAt(i);
-      }
-
-      if (female.GeneticsPairs.containsSecondElement(element)) {
-        var i = female.GeneticsPairs.indexOfSecondElement(element);
-        pair.add([element, female.GeneticsPairs[i]]);
-        female.GeneticsPairs.removeAt(i);
-      } else {
-        pair.add([
-          element,
-          [0, 0]
-        ]);
-      }
-    });*/
     female.pairs.forEach((element) {
       if (denyHashList.contains(element.hashCode)) {
+        return;
       } else {
-        var index = female.pairs.indexOfGeneticPairs(element);
+        denyHashList.add(element.hashCode);
+        var index = female.pairs.indexOfGeneticPairs(element, denyHashList);
         if (index != -1) {
           pair.add([element.ToIntList(), female.pairs[index].ToIntList()]);
           denyHashList.add(female.pairs[index].hashCode);
-        }else{
-          pair.add([element.ToIntList(), [0,0]]);
+        } else {
+          pair.add([
+            element.ToIntList(),
+            [0, 0]
+          ]);
         }
       }
-      /*pair.add([
-        element,
-        [0, 0]
-      ]);*/
     });
-    if(pair.length!=1){
-      pair= pair.where((element) =>!listEquals(element[0], [0,0])).toList();
-
-
+    if (pair.length != 1) {
+      pair = pair.where((element) => !listEquals(element[0], [0, 0])).toList();
     }
 
-    int all = pow( 4,pair.length,).toInt();
+    int all = pow(
+      4,
+      pair.length,
+    ).toInt();
     List<Snake> children = [];
     for (int i2 = 0; i2 < all; i2++) {
       children.add(new Snake());
@@ -135,7 +112,7 @@ class Morph {
 
       var groupIndex = 0;
       for (int index = 0; index < all;) {
-        for (int i2 = 0; i2 < (all/ pow(4, i1 + 1).toInt()); i2++) {
+        for (int i2 = 0; i2 < (all / pow(4, i1 + 1).toInt()); i2++) {
           //何回繰り返す?
           children[index].AddfromID(groups[groupIndex]);
           index++;
