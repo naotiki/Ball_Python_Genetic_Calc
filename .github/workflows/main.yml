@@ -15,11 +15,12 @@ jobs:
       - name: Flutter setting
         uses: subosito/flutter-action@v1
         with:
-          channel: beta
+          channel: stable
       - name: "Install and Build  🔧"
         run: |
           echo $SIGNING_KEY | base64 -d > android/app/key.jks
           flutter config --enable-web
+          flutter config --enable-windows-desktop
           flutter pub get
           flutter build apk
           flutter build windows
