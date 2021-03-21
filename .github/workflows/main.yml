@@ -24,7 +24,6 @@ jobs:
           encodedString: $SIGNING_KEY
       - name: "Install and Build  🔧"
         run: |
-          echo $SIGNING_KEY | base64 -d > android/app/key.keystore
           flutter config --enable-web
           flutter config --enable-windows-desktop
           flutter pub get
