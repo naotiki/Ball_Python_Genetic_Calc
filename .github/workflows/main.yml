@@ -2,7 +2,7 @@ name: Flutter CI
 'on':
   push:
     branches:
-      - master
+      - a #master
   pull_request:
     branches:
       - master
@@ -18,10 +18,17 @@ jobs:
           channel: beta
       - name: "Install and Build  🔧"
         run: |
+          echo $SIGNING_KEY | base64 -d > android/app/key.jks
           flutter config --enable-web
           flutter pub get
-          flutter test
+          flutter build apk
           flutter build web
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          ALIAS: ${{ secrets.ALIAS }}
+          KEY_PATH: key.jks
       - name: "Deploy 🚀"
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
