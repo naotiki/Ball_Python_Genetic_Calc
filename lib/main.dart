@@ -238,7 +238,7 @@ class _MyHomePageState extends State<MyHomePage> {
           //
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: ()=>_launchURL("https://forms.gle/vWm3p1L68eM9vQLC8"),child: Icon(Icons.feedback),),
+      floatingActionButton: FloatingActionButton(onPressed: ()=>_launchURL("https://github.com/unity709/Ball_Python_Genetic_Calc"),child: Icon(Icons.info_outline),),
     );
 
   }
