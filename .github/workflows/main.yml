@@ -25,6 +25,11 @@ jobs:
         with:
           fileName: 'NaotikiApps'
           encodedString: ${{ secrets.SIGNING_KEY }}
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
       - name: "Install and Build  🔧"
         run: |
           flutter config --enable-web
