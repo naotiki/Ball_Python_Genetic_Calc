@@ -2,7 +2,7 @@ name: Flutter CI
 'on':
   push:
     branches:
-      - a #master
+      - master
   pull_request:
     branches:
       - master
@@ -22,6 +22,7 @@ jobs:
           flutter config --enable-web
           flutter pub get
           flutter build apk
+          flutter build windows
           flutter build web
         env:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
@@ -29,7 +30,17 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           ALIAS: ${{ secrets.ALIAS }}
           KEY_PATH: key.jks
-      - name: "Deploy 🚀"
+      - name: "Deploy apk 🚀"
+        uses: actions/upload-artifact@v1
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+      - name: "Deploy windows 🚀"
+        uses: actions/upload-artifact@v1
+        with:
+          name: release-exe
+          path: build/windows/runner/Release/BallPythonCalc.exe
+      - name: "Deploy web 🚀"
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
