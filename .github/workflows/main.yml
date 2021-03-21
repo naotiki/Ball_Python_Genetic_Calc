@@ -16,9 +16,15 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: stable
+      - name: Decode Cert
+        id: write_file
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'android/app/key.keystore'
+          encodedString: $SIGNING_KEY
       - name: "Install and Build  🔧"
         run: |
-          echo $SIGNING_KEY | base64 -d > android/app/key
+          echo $SIGNING_KEY | base64 -d > android/app/key.keystore
           flutter config --enable-web
           flutter config --enable-windows-desktop
           flutter pub get
@@ -30,7 +36,7 @@ jobs:
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           ALIAS: ${{ secrets.ALIAS }}
-          KEY_PATH: key
+          KEY_PATH: key.keystore
       - name: "Deploy apk 🚀"
         uses: actions/upload-artifact@v1
         with:
