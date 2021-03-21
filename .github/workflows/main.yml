@@ -18,7 +18,7 @@ jobs:
       - name: Flutter setting
         uses: subosito/flutter-action@v1
         with:
-          channel: 'master'
+          channel: 'stable'
       - name: Decode Cert
         id: write_file
         uses: timheuer/base64-to-file@v1
