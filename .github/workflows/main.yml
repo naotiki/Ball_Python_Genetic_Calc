@@ -18,7 +18,7 @@ jobs:
           channel: stable
       - name: "Install and Build  🔧"
         run: |
-          echo $SIGNING_KEY | base64 -d > android/app/key.jks
+          echo $SIGNING_KEY | base64 -d > android/app/key
           flutter config --enable-web
           flutter config --enable-windows-desktop
           flutter pub get
@@ -30,7 +30,7 @@ jobs:
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           ALIAS: ${{ secrets.ALIAS }}
-          KEY_PATH: key.jks
+          KEY_PATH: key
       - name: "Deploy apk 🚀"
         uses: actions/upload-artifact@v1
         with:
