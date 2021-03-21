@@ -1,17 +1,26 @@
+import 'package:tuple/tuple.dart';
+
 import 'GeneticPair.dart';
 import 'Morph.dart';
 
-void main() {
+/*void main() {
   Genetic.initialize();
-  Morph.Calc([
+  Morph.Calc(Tuple3(null, [
+    GeneticPair.auto(Genetic.fromName("DNA")),
+    GeneticPair.auto(Genetic.fromName("GHIボール")),
     GeneticPair.auto(Genetic.fromName("Exo-LBB")),
+    GeneticPair.auto(Genetic.fromName("Exo-LBB"),info:Info.Super),
+  ], [
+    GeneticPair.auto(Genetic.fromName("ARP")),
+    GeneticPair.auto(Genetic.fromName("DNA")),
+    GeneticPair.auto(Genetic.fromName("アザンティック")),
 
-  ],[
-
+    GeneticPair.auto(Genetic.fromName("GHIボール")),
+    GeneticPair.auto(Genetic.fromName("Z")),
     GeneticPair.auto(Genetic.fromName("Exo-LBB")),
-
-  ], );
-}
+    GeneticPair.auto(Genetic.fromName("Exo-LBB"),info:Info.Super),
+  ]));
+}*/
 
 class Genetic {
   final String name;
@@ -38,7 +47,7 @@ class Genetic {
     });
   }
 
-static final normal=new Genetic("ノーマル", 0, Order.Normal);
+  static final normal = new Genetic("ノーマル", 0, Order.Normal);
   static List<Genetic> genetics = [normal];
 
   static Genetic fromName(String name) {
@@ -263,7 +272,7 @@ static final normal=new Genetic("ノーマル", 0, Order.Normal);
     "セブンダラーゴースト(7ドルゴースト)",
     "アルビノ(Ｔ-アルビノ)",
     "アルプス"
-    "アトミック",
+        "アトミック",
     "オータムグロス",
     "アザンティック",
     "バンデット",
@@ -312,7 +321,7 @@ static final normal=new Genetic("ノーマル", 0, Order.Normal);
   @override
   String toString() {
     //return '$name{order: ${Extension.enumToString(order)},id: $ID}';
-    return ID!=0? name:"";
+    return ID != 0 ? name : "";
   }
 }
 

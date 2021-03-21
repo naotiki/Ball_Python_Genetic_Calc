@@ -42,9 +42,16 @@ class Snake {
          str+="スーパー "+element.pair[0].toString();
          break;
 }
-   });
+
+if(element.pair[0].toString()!="")str+=" ";
+   }
+
+   );
+
    if (str=="") {
      str="ノーマル";
+   }else{
+     str=str.substring(0,str.length-1);
    }
    return str;
   }

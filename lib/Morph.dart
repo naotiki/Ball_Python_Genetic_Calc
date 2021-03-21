@@ -1,5 +1,7 @@
+import 'dart:isolate';
 import 'dart:math';
 
+import 'Genetic.dart';
 import 'package:flutter/foundation.dart';
 import 'package:tuple/tuple.dart';
 
@@ -9,12 +11,14 @@ import 'Snake.dart';
 
 /// # モルフを定義するクラス
 class Morph {
-  ///短縮形 Clacにバイパス
-  static void CalcDebug(GeneticPair male, GeneticPair female) =>
-      Calc([male], [female]);
 
-  static List<Tuple2<String, double>> Calc(
-      List<GeneticPair> Male, List<GeneticPair> Female) {
+
+   static  Future<List<Tuple2<String, double>>>  Calc(
+       Tuple3<SendPort?,List<GeneticPair>,List<GeneticPair>> snakes
+     /* List<GeneticPair> Male, List<GeneticPair> Female*/) async{
+     Genetic.initialize();
+     var Male=snakes.item2;
+     var Female=snakes.item3;
     if (listEquals(Male, [])) {
       Male = [GeneticPair.normal()];
     }
@@ -131,7 +135,7 @@ class Morph {
 
       var groupIndex = 0;
       for (int index = 0; index < all;) {
-        for (int i2 = 0; i2 < (all / pow(4, i1 + 1).toInt()); i2++) {
+        for (int i2 = 0; i2 < (all/ pow(4, i1 + 1).toInt()); i2++) {
           //何回繰り返す?
           children[index].AddfromID(groups[groupIndex]);
           index++;
@@ -155,6 +159,7 @@ class Morph {
     });
 
     print(result.toString());
-    return result;
+    snakes.item1?.send(result);
+    return Future<List<Tuple2<String, double>>>.value(result);
   }
 }
