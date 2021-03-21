@@ -49,9 +49,26 @@ jobs:
         with:
           name: release-exe
           path: build/windows/runner/Release/BallPythonCalc.exe
-      - name: "Deploy web 🚀"
+      - name: "Upload Web 🚀"
+        uses: actions/upload-artifact@v1
+        with:
+          name: release-web
+          path: build/web/
+  deploy-web:
+    needs: [ build-and-deploy ] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+        uses: actions/download-artifact@v1
+        with:
+          name: release-web
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          #GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-          BRANCH: gh-pages
-          FOLDER: ./build/web
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
+          folder: "release-web"# The deployment folder should match the name of the artifact. Even though our project builds into the 'build' folder the artifact name of 'site' must be placed here.
+
