@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(ball_python_calc LANGUAGES CXX)
 
-set(BINARY_NAME "ball_python_calc")
+set(BINARY_NAME "BallPythonCalc")
 
 cmake_policy(SET CMP0063 NEW)
 

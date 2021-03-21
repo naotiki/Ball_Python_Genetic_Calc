@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ball_python_calc">
+    package="xyz.naotiki_apps.ball_python_calc">
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -8,7 +8,7 @@
         </intent>
     </queries>
    <application
-        android:label="ball_python_calc"
+        android:label="ボールパイソン遺伝計算機"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

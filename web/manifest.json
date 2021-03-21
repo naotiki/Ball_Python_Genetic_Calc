@@ -1,6 +1,6 @@
 {
-    "name": "ball_python_calc",
-    "short_name": "ball_python_calc",
+    "name": "ボールパイソン遺伝計算機",
+    "short_name": "ボールパイソン",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
