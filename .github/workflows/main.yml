@@ -21,7 +21,7 @@ jobs:
         uses: timheuer/base64-to-file@v1
         with:
           fileName: 'android/app/key.keystore'
-          encodedString: $SIGNING_KEY
+          encodedString: ${{ secrets.SIGNING_KEY }}
       - name: "Install and Build  🔧"
         run: |
           flutter config --enable-web
