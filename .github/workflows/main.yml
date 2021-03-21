@@ -68,7 +68,6 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
           branch: gh-pages
-          folder: "release-web"# The deployment folder should match the name of the artifact. Even though our project builds into the 'build' folder the artifact name of 'site' must be placed here.
+          folder: "release-web"# デプロイメントフォルダーは、アーティファクトの名前と一致する必要があります。プロジェクトは「build」フォルダーにビルドされますが、「site」のアーティファクト名をここに配置する必要があります。
 
