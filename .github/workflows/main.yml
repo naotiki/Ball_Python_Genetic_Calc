@@ -69,6 +69,6 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: release-exe
-          path: build/windows/runner/Release/BallPythonCalc.exe
+          path: build/windows/runner/Release/
 
 
