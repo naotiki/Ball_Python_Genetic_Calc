@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fraction/fraction.dart';
 import 'package:tuple/tuple.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'Genetic.dart';
 import 'MorphListWidget.dart';
@@ -21,9 +22,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'ボールパイソン遺伝計算',
       theme: ThemeData(
-        fontFamily: 'Quicksand',
+        fontFamily: 'OpenSans',
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -34,8 +35,9 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+
       ),
-      home: MyHomePage(title: 'ボールパイソンモルフ計算 (BallPython Morph Calculator)'),
+      home: MyHomePage(title: 'ボールパイソン遺伝計算'),
     );
   }
 }
@@ -124,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: "オス",
+                        labelText: "メス",
                         hintText: "空欄でノーマル",
                       ),
                     ),
@@ -236,9 +238,12 @@ class _MyHomePageState extends State<MyHomePage> {
           //
         ],
       ),
+      floatingActionButton: FloatingActionButton(onPressed: ()=>_launchURL("https://forms.gle/vWm3p1L68eM9vQLC8"),child: Icon(Icons.feedback),),
     );
-  }
 
+  }
+  void _launchURL(String url) async =>
+      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
   List<Tuple2<String, double>>? CalcResult;
 
   ListView GetResult() {
