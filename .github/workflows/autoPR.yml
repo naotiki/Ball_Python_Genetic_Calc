@@ -38,8 +38,8 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          title: Security Update into master.
-          labels: Auto PR
+          title: Morph Name Fix
+          labels: New Alias
           branch: nameFix #作成されるブランチは securityFix-xxxxxxx
           token: ${{ secrets.GITHUB }}
 
