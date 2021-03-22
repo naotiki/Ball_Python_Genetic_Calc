@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'Extension.dart';
 import 'package:ball_python_calc/Genetic.dart';
 import 'package:ball_python_calc/GeneticPair.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +33,14 @@ class _MorphListWidgetState extends State<MorphListWidget> {
 
   List<TextButton> showButtons=[];
   void Search(String str){
+
     setState(() {
 
-      showButtons= allButtons.where((element) => (element.child as Text).data!.toLowerCase().contains(str.toLowerCase())).toList();
+      showButtons= allButtons.where((element) {
+        return (element.child as Text).data!.kanaToHira().toLowerCase().contains(str.kanaToHira().toLowerCase())
+            ||(element.child as Text).data!.hiraToKana().toLowerCase().contains(str.hiraToKana().toLowerCase());
+      }
+      ).toList();
     });
   }
 

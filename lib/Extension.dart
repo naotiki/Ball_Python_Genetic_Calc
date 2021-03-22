@@ -5,6 +5,7 @@ class Extension {
   static String enumToString(value) {
     return value.toString().split('.')[1];
   }
+
 }
 /*
 /// Dart きらい しね Kotlinのほうが1.00E+99倍いい
@@ -38,7 +39,14 @@ extension ContainList on List<List<int>> {
     return -1;
   }
 }*/
-
+extension StringEx on String{
+   String kanaToHira() {
+    return this.replaceAllMapped(new RegExp("[ァ-ヴ]"), (Match m) => String.fromCharCode(m.group(0)!.codeUnitAt(0) - 0x60));
+  }
+   String hiraToKana() {
+     return this.replaceAllMapped(new RegExp("[ぁ-ゔ]"), (Match m) => String.fromCharCode(m.group(0)!.codeUnitAt(0) + 0x60));
+   }
+}
 extension GeneticsList on List<GeneticPair> {
   int indexOfGeneticPairs(GeneticPair b,Set<int> deny) {
     var r=-1;
