@@ -27,7 +27,7 @@ jobs:
         shell: bash -xe {0}
         if: ${{contains( github.event.issue.labels.*.name, 'New Alias' )}}
         run: |
-          STR=${{github.event.issue.body}}
+          STR="${{github.event.issue.body}}"
           ARR=(${STR// => /})
           echo "${ARR[0]},${ARR[1]}" > Alias.txt
 
