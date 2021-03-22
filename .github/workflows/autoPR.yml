@@ -28,4 +28,4 @@ jobs:
         
           cat Alias.txt
           echo '${{ toJson(github.event) }}'
-          echo '${{contains( github.event.labels, 'New Alias' )}}'
+          echo '${{contains( github.event.issue.labels, 'New Alias' )}}'
