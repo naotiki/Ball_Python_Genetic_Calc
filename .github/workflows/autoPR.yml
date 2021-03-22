@@ -28,6 +28,18 @@ jobs:
         if: ${{contains( github.event.issue.labels.*.name, 'New Alias' )}}
         run: |
           STR="${{github.event.issue.body}}"
-          ARR=(${STR// => /})
-          echo "${ARR[0]},${ARR[1]}" > Alias.txt
+          ARR=(${STR// => /\",\"})
+          echo "\"${ARR[@]}\",\n" >> Alias.txt
+          echo "class Alias{\nstatic Map aliasList={\n" > lib/Alias.dart
+          cat Alias.txt >> lib/Alias.dart
+          echo "};\n}" >> lib/Alias.dart
+          cat lib/Alias.dart
+      - name: Create Pull Request # ブランチを作成して PullRequest を作成
+        id: cpr
+        uses: peter-evans/create-pull-request@v1.7.0
+        with:
+          title: Security Update into master.
+          labels: Auto PR
+          branch: nameFix #作成されるブランチは securityFix-xxxxxxx
+          token: ${{ secrets.GITHUB }}
 
