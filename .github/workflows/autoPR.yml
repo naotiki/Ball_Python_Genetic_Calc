@@ -27,3 +27,4 @@ jobs:
         run: |
           cat Alias.txt
           echo '${{ toJson(github.event) }}'
+          echo '${{contains( github.event.labels, 'New Alias' )}}'
