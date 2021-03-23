@@ -1,7 +1,4 @@
-import 'package:tuple/tuple.dart';
 
-import 'GeneticPair.dart';
-import 'Morph.dart';
 
 /*void main() {
   Genetic.initialize();
@@ -271,8 +268,8 @@ class Genetic {
   static List<String> recessives = [
     "セブンダラーゴースト(7ドルゴースト)",
     "アルビノ(Ｔ-アルビノ)",
-    "アルプス"
-        "アトミック",
+    "アルプス",
+    "アトミック",
     "オータムグロス",
     "アザンティック",
     "バンデット",
